@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy 14th Birthday Abdullah 🎂!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- jQuery for easier DOM manipulation -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&family=Comic+Neue:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a1f0a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            overflow: hidden;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #1e5c2e 0%, #2a7d3e 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(30, 92, 46, 0.4);
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #2a7d3e 0%, #3a9d4e 100%);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(30, 92, 46, 0.6);
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(2px) scale(1);
+            box-shadow: 0 4px 10px rgba(30, 92, 46, 0.4);
+        }
+        
+        .header-text {
+            font-family: 'Fredoka One', cursive;
+            color: #ffdd40;
+            text-shadow: 3px 3px 0 #d35400, 6px 6px 0 rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
+        }
+        
+        .highlight {
+            color: #ffdd40;
+            font-weight: 800;
+            text-shadow: 2px 2px 0 #d35400;
+        }
+        
+        .green-bg {
+            background: linear-gradient(135deg, #0a3d1c 0%, #1e5c2e 100%);
+        }
+        
+        .dark-green-bg {
+            background: linear-gradient(135deg, #062312 0%, #0a3d1c 100%);
+        }
+        
+        .roblox-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600') center/cover;
+        }
+        
+        .food-bg {
+            background: linear-gradient(rgba(10, 30, 10, 0.85), rgba(20, 50, 20, 0.9)), url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1600') center/cover;
+        }
+        
+        .canada-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600') center/cover;
+        }
+        
+        .family-bg {
+            background: linear-gradient(rgba(20, 60, 30, 0.9), rgba(30, 80, 40, 0.9)), url('https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=1600') center/cover;
+        }
+        
+        .cake-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 30px auto;
+            perspective: 1000px;
+        }
+        
+        .candle {
+            position: absolute;
+            width: 12px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ff3333, #ff9900, #ff3333);
+            border-radius: 6px 6px 0 0;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(255, 100, 0, 0.7);
+        }
+        
+        .flame {
+            position: absolute;
+            width: 24px;
+            height: 50px;
+            background: radial-gradient(ellipse at center, #ffff00 0%, #ff9900 50%, #ff3300 100%);
+            border-radius: 50% 50% 30% 30%;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 0.4s infinite alternate, glow 1s infinite alternate;
+            box-shadow: 0 0 30px #ff9900, 0 0 60px #ff6600;
+            z-index: 11;
+            filter: blur(1px);
+            cursor: pointer;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            50% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px #ff9900, 0 0 40px #ff6600; }
+            100% { box-shadow: 0 0 30px #ff9900, 0 0 60px #ff6600; }
+        }
+        
+        .cake {
+            width: 280px;
+            height: 140px;
+            background: linear-gradient(to bottom, #f8c8dc, #e75480, #b22222);
+            border-radius: 15px 15px 0 0;
+            position: relative;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cake-top {
+            width: 310px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ffcc00, #ff9900, #cc6600);
+            border-radius: 50%;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 5px 15px rgba(255, 255, 200, 0.5);
+        }
+        
+        .cake-bottom {
+            width: 310px;
+            height: 100px;
+            background: linear-gradient(to bottom, #b22222, #8b0000, #660000);
+            border-radius: 15px;
+            position: absolute;
+            top: 115px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .frosting {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle at 30% 30%, #ffcc00, #ff9900);
+            border-radius: 50%;
+            top: 15px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .food-image {
+            width: 220px;
+            height: 170px;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            margin: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .food-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .food-image:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+        
+        .robux-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 28px;
+            margin: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 102, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .robux-icon:hover {
+            transform: translateY(-10px) rotate(5deg);
+            box-shadow: 0 20px 30px rgba(0, 0, 102, 0.5);
+            background: linear-gradient(135deg, #00ccff, #0088ff);
+        }
+        
+        .robux-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(10, 61, 28, 0.8);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 221, 64, 0.3);
+        }
+        
+        
+        .name-input {
+            margin-bottom: 90px;
+            padding: 18px 30px;
+            border-radius: 60px;
+            border: 4px solid #1e5c2e;
+            font-size: 20px;
+            width: 350px;
+            max-width: 90%;
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.95);
+            color: #0a3d1c !important;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            /* transition:   ease; */
+        }
+        
+        .name-input:focus {
+            outline: none;
+            border-color: #ffdd40;
+            box-shadow: 0 0 30px rgba(255, 221, 64, 0.7), 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .name-input::placeholder {
+            color: #1e5c2e;
+            opacity: 0.8;
+        }
+        
+        .error-message {
+            color: #ff6666;
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 18px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        
+        .logo {
+            font-family: 'Fredoka One', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffdd40;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            text-shadow: 2px 2px 0 #d35400;
+            background: rgba(10, 61, 28, 0.8);
+            padding: 10px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 221, 64, 0.3);
+        }
+        
+        .made-by {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(10, 61, 28, 0.8);
+            padding: 10px 20px;
+            border-radius: 15px;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 221, 64, 0.3);
+        }
+        
+        .nickname {
+            color: #ffdd40;
+            font-weight: 800;
+            font-style: italic;
+            text-shadow: 2px 2px 0 #d35400;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #f00;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .final-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0a3d1c, #1e5c2e, #2a7d3e, #3a9d4e);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .final-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 221, 64, 0.5);
+        }
+        
+        .progress-bar {
+            width: 300px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffdd40, #ff9900);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+        
+        .fullscreen-celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: radial-gradient(circle at center, #0a3d1c 0%, #000000 100%);
+            overflow: hidden;
+        }
+        
+        .celebration-text {
+            font-size: 5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ffdd40;
+            text-shadow: 0 0 20px #ff9900, 0 0 40px #ff6600;
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffdd40;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .birthday-text {
+            font-size: 4rem;
+            color: #ffdd40;
+            font-weight: 900;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 0 0 10px #ff9900;
+        }
+        
+        .celebration-firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* NEW: Balloon and Heart Animations */
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            bottom: -100px;
+            pointer-events: none;
+            z-index: 1500;
+        }
+        
+        .balloon:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.7);
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .heart {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 1500;
+            opacity: 0;
+        }
+        
+        .heart:before, .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 32px;
+            background: #ff3366;
+            border-radius: 20px 20px 0 0;
+            top: 0;
+        }
+        
+        .heart:before {
+            left: 20px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        
+        .floating-heart {
+            animation: floatUp 6s ease-in forwards;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .floating-balloon {
+            animation: floatBalloon 8s ease-in forwards;
+        }
+        
+        @keyframes floatBalloon {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(10deg);
+                opacity: 0.7;
+            }
+        }
+        
+        .bounce-balloon {
+            animation: bounceBalloon 15s ease-in-out infinite;
+        }
+        
+        @keyframes bounceBalloon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cake-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .cake {
+                width: 240px;
+                height: 120px;
+            }
+            
+            .cake-top, .cake-bottom {
+                width: 260px;
+            }
+            
+            .header-text {
+                font-size: 32px;
+                text-align: center;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 18px;
+            }
+            
+            .logo, .made-by {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin: 10px auto;
+                text-align: center;
+                display: inline-block;
+            }
+            
+            .logo {
+                margin-top: 20px;
+            }
+            
+            #name-input {
+                width: 280px;
+                font-size: 18px;
+                padding: 15px 25px;
+            }
+            
+            .celebration-text {
+                font-size: 3rem;
+            }
+            
+            .birthday-text {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-text {
+                font-size: 28px;
+            }
+            
+            #name-input {
+                width: 250px;
+                font-size: 16px;
+            }
+            
+            .robux-container {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .robux-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                margin: 10px;
+            }
+            
+            .celebration-text {
+                font-size: 2rem;
+            }
+            
+            .birthday-text {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">🎉 Abdullah's 14th 🎉</div>
+    
+    <!-- Made by -->
+    <div class="made-by">Made with ❤️ by SAQLAIN ABBAS</div>
+    
+    <!-- Full Screen Celebration with Balloons & Hearts -->
+    <div id="fullscreen-celebration" class="fullscreen-celebration">
+        <div class="celebration-text">HAPPY BIRTHDAY ABDULLAH!</div>
+        <div class="birthday-text">🎂 14 YEARS OLD 🎂</div>
+        <div class="birthday-text">🎉 THE BEST IS YET TO COME! 🎉</div>
+        <button id="close-celebration" class="btn text-xl px-12 py-5 mt-10">Continue Celebration</button>
+    </div>
+    
+    <!-- Final Screen (GSAP Animation) -->
+    <div id="final-screen" class="final-screen">
+        <div class="final-content">
+            <h1 class="header-text text-5xl mb-8">HAPPY BIRTHDAY ABDULLAH!</h1>
+            <p class="text-2xl mb-6">This celebration was created with love by your brother, Saqlain Abbas</p>
+            <p class="text-xl mb-10">May your 14th year be filled with joy, laughter, and all your favorite things!</p>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <p id="loading-text" class="text-lg">Loading amazing memories...</p>
+        </div>
+    </div>
+    
+    <!-- Slide 1: Authentication -->
+    <div id="slide-1" class="slide active">
+        <div class="text-center max-w-3xl mx-auto px-4">
+            <div class="floating">
+                <h1 class="header-text text-6xl mb-6">Happy 14th Birthday!</h1>
+            </div>
+            <p class="text-2xl mb-8">This interactive celebration is created especially for <span class="highlight">Abdullah Altaf</span>, also known as <span class="nickname">"NATGULI"</span> to our beloved father.</p>
+            <p class="text-xl mb-10">To begin this magical journey, please enter the birthday boy's name:</p>
+            
+            <div class="relative">
+                 <!-- padding: 18px 30px;
+            border-radius: 60px;
+            border: 4px solid #1e5c2e;
+            font-size: 20px;
+            width: 350px;
+            max-width: 90%;
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.95);
+            color: #0a3d1c !important;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease; -->
+            <!-- style="margin-top: 30px; padding: 18px 30px;  border: 4px solid #1e5c2e; font-size: 20px; width: 350px; max-width: 90%; text-align: center; background: rgba(255, 255, 255, 0.95);  color: #0a3d1c !important; font-weight: 700; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);" -->
+                <input type="text" id="name-input" class="name-input"  placeholder="Enter your name here">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-green-800 text-white px-4 py-1 rounded-full text-sm">Who's the birthday boy?</div>
+            </div>
+            <p id="error-message" class="error-message">Oops! That's not the right name. Try "Abdullah" or "Altaf" or "Natguli"</p>
+            
+            <button id="start-btn" class="btn text-xl px-12 py-5 mt-8 pulse">Let's Celebrate! 🎂</button>
+            
+            <div class="mt-20 text-sm opacity-80">
+                <p>✨ A personalized gift from your brother, Saqlain Abbas ✨</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 2: Welcome -->
+    <div id="slide-2" class="slide dark-green-bg hidden">
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-8">Happy 14th Birthday, <span id="display-name" class="underline">Abdullah</span>! 🎉</h1>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 mb-10 border-2 border-white/20 shadow-2xl">
+                <p class="text-3xl mb-6">Welcome to your personalized birthday experience!</p>
+                <p class="text-2xl mb-4">You're turning <span class="highlight">14</span> today, and we're going to celebrate in style!</p>
+                <p class="text-xl">Get ready for an interactive journey through all your favorite things!</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8 mb-12">
+                <div class="bg-white/10 rounded-2xl p-6 w-48 transform hover:scale-105 transition-all duration-300">
+                    <p class="text-4xl mb-3">🎮</p>
+                    <p class="font-bold text-xl">Roblox Gaming</p>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-6 w-48 transform hover:scale-105 transition-all duration-300">
+                    <p class="text-4xl mb-3">🍕</p>
+                    <p class="font-bold text-xl">Pizza & Biryani</p>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-6 w-48 transform hover:scale-105 transition-all duration-300">
+                    <p class="text-4xl mb-3">🍦</p>
+                    <p class="font-bold text-xl">Cookies & Cream</p>
+                </div>
+                <div class="bg-white/10 rounded-2xl p-6 w-48 transform hover:scale-105 transition-all duration-300">
+                    <p class="text-4xl mb-3">🍁</p>
+                    <p class="font-bold text-xl">Canada Dreams</p>
+                </div>
+            </div>
+            
+            <button class="btn next-slide text-xl px-12 py-5 mt-6">Continue the Celebration! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 3: Roblox Theme -->
+    <div id="slide-3" class="slide roblox-bg hidden">
+        <div class="text-center max-w-5xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-6">🎮 Your Roblox World! 🎮</h1>
+            
+            <p class="text-2xl mb-10">As a true Roblox fan, here's your special Robux bonus for your birthday!</p>
+            
+            <div class="robux-container">
+                <div class="robux-icon floating" style="animation-delay: 0s">R$</div>
+                <div class="robux-icon floating" style="animation-delay: 0.2s">500</div>
+                <div class="robux-icon floating" style="animation-delay: 0.4s">🎁</div>
+                <div class="robux-icon floating" style="animation-delay: 0.6s">14</div>
+                <div class="robux-icon floating" style="animation-delay: 0.8s">R$</div>
+                <div class="robux-icon floating" style="animation-delay: 1s">1000</div>
+                <div class="robux-icon floating" style="animation-delay: 1.2s">🏆</div>
+                <div class="robux-icon floating" style="animation-delay: 1.4s">R$</div>
+                <div class="robux-icon floating" style="animation-delay: 1.6s">2000</div>
+                <div class="robux-icon floating" style="animation-delay: 1.8s">🎮</div>
+            </div>
+            
+            <div class="bg-black/60 rounded-3xl p-10 my-10 border border-gray-700 max-w-3xl mx-auto backdrop-blur-sm">
+                <p class="text-3xl mb-6">Happy Birthday from the Roblox Universe!</p>
+                <p class="text-2xl mb-4">You now have <span class="highlight">14,000 bonus Robux</span> to spend on your favorite games!</p>
+                <p class="text-xl">Enjoy your tablet gaming sessions even more today! May you build the coolest games and have the most epic adventures!</p>
+            </div>
+            
+            <button class="btn next-slide text-xl px-12 py-5">Time for Cake! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 4: Birthday Cake -->
+    <div id="slide-4" class="slide dark-green-bg hidden">
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-8">Make a Wish & Blow Your Candles! 🎂</h1>
+            <p class="text-2xl mb-10">You have <span class="highlight">14 candles</span> to blow out. Make a wish and click the flame!</p>
+            
+            <div class="cake-container">
+                <div class="cake floating">
+                    <div class="cake-top"></div>
+                    <div class="cake-bottom"></div>
+                    <!-- Frosting dots -->
+                    <div class="frosting" style="left: 40px;"></div>
+                    <div class="frosting" style="left: 90px;"></div>
+                    <div class="frosting" style="left: 140px;"></div>
+                    <div class="frosting" style="left: 190px;"></div>
+                    <div class="frosting" style="left: 240px;"></div>
+                </div>
+                <div class="candle"></div>
+                <div id="flame" class="flame"></div>
+            </div>
+            
+            <div class="my-10">
+                <p id="candle-status" class="text-2xl">Click the flame to blow out your candles!</p>
+                <p id="wish-message" class="text-2xl mt-6 hidden bg-gradient-to-r from-yellow-500/30 to-orange-500/30 p-6 rounded-2xl border border-yellow-500/50">🎉 Your wish has been sent to the universe! 🎉</p>
+            </div>
+            
+            <button id="blow-btn" class="btn text-xl px-12 py-5 mb-6 pulse">Blow Out Candles! 🕯️</button>
+            <br>
+            <button class="btn next-slide text-xl px-12 py-5 hidden" id="after-cake">Continue Celebration! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 5: Favorite Foods -->
+    <div id="slide-5" class="slide food-bg hidden">
+        <div class="text-center max-w-6xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-10">🍽️ Abdullah's Favorite Foods! 🍽️</h1>
+            
+            <p class="text-2xl mb-8">A visual feast of all your favorite treats!</p>
+            
+            <div class="food-grid">
+                <div class="food-image floating" style="background-image: url('data:image/jpeg;base64,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')" data-food="Pizza">
+                    <div class="absolute bottom-0 w-full p-4 text-white font-bold text-xl z-10">🍕 Pizza</div>
+                </div>
+                <div class="food-image floating" style="background-image: url('data:image/jpeg;base64,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')" data-food="Biryani">
+                    <div class="absolute bottom-0 w-full p-4 text-white font-bold text-xl z-10">🍛 Mom's Biryani</div>
+                </div>
+                <div class="food-image floating" style="background-image: url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800')" data-food="Ice Cream">
+                    <div class="absolute bottom-0 w-full p-4 text-white font-bold text-xl z-10">🍦 Cookies & Cream</div>
+                </div>
+                <div class="food-image floating" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800')" data-food="Orange">
+                    <div class="absolute bottom-0 w-full p-4 text-white font-bold text-xl z-10">🍊 Oranges</div>
+                </div>
+                <div class="food-image floating" style="background-image: url('https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=800')" data-food="Mango">
+                    <div class="absolute bottom-0 w-full p-4 text-white font-bold text-xl z-10">🥭 Mangoes</div>
+                </div>
+                <div class="food-image floating" style="background-image: url('https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800')" data-food="Crisps & Chocolates">
+                    <div class="absolute bottom-0 w-full p-4 text-white font-bold text-xl z-10">🍫 Crisps & Chocolates</div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white/10 backdrop-blur-sm rounded-3xl p-10 max-w-3xl mx-auto border border-white/20">
+                <p class="text-3xl mb-6">Your food preferences are legendary!</p>
+                <p class="text-xl">From Mom's special biryani to cookies & cream ice cream, you have excellent taste! Don't forget to enjoy a Mirinda with your pizza!</p>
+            </div>
+            
+            <button class="btn next-slide text-xl px-12 py-5 mt-10">Next: Pocket Money! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 6: Pocket Money & Drawing -->
+    <div id="slide-6" class="slide green-bg hidden">
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-10">💰 Your pkr 500 Pocket Money Upgrade! 💰</h1>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 mb-12">
+                <div class="bg-white/10 rounded-3xl p-10 w-full md:w-1/2 transform hover:scale-105 transition-all duration-500">
+                    <p class="text-5xl mb-4">pkr 500</p>
+                    <p class="text-2xl mb-8">Your current pocket money</p>
+                    <div class="w-full h-6 bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                        <div class="h-full bg-yellow-500 w-1/2 rounded-full"></div>
+                    </div>
+                    <p class="mt-4 text-lg">50% filled</p>
+                </div>
+                
+                <div class="text-5xl animate-pulse">→</div>
+                
+                <div class="bg-white/10 rounded-3xl p-10 w-full md:w-1/2 transform hover:scale-105 transition-all duration-500">
+                    <p class="text-5xl mb-4">pkr 1000</p>
+                    <p class="text-2xl mb-8">Your new birthday pocket money!</p>
+                    <div class="w-full h-6 bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                        <div class="h-full bg-green-500 w-full rounded-full"></div>
+                    </div>
+                    <p class="mt-4 text-lg">100% filled - Birthday Bonus! 🎁</p>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 mb-10 border border-white/20">
+                <p class="text-3xl mb-8">🎨 Your Drawing Talent 🎨</p>
+                <p class="text-2xl mb-6">You love simple drawings and coloring - a wonderful creative outlet!</p>
+                <p class="text-xl">Use your upgraded pocket money to buy more art supplies and continue developing your artistic skills!</p>
+                <div class="mt-8 flex justify-center space-x-6">
+                    <div class="w-16 h-16 bg-red-500 rounded-full"></div>
+                    <div class="w-16 h-16 bg-blue-500 rounded-lg"></div>
+                    <div class="w-16 h-16 bg-green-500 rounded-full"></div>
+                    <div class="w-16 h-16 bg-yellow-500 rounded-lg"></div>
+                </div>
+            </div>
+            
+            <button class="btn next-slide text-xl px-12 py-5">Next: Family Love! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 7: Family Love -->
+    <div id="slide-7" class="slide family-bg hidden">
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-10">❤️ Family Love ❤️</h1>
+            
+            <div class="flex flex-wrap justify-center gap-10 mb-12">
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 w-80 transform hover:scale-105 transition-all duration-300">
+                    <div class="text-7xl mb-6">👩‍🍳</div>
+                    <p class="text-3xl font-bold mb-6">MOM</p>
+                    <p class="text-lg">Who makes the world's best biryani and loves you unconditionally. Your love for her shines through in everything you do.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 w-80 transform hover:scale-105 transition-all duration-300">
+                    <div class="text-7xl mb-6">👨‍💼</div>
+                    <p class="text-3xl font-bold mb-6">DAD</p>
+                    <p class="text-lg">Who affectionately calls you <span class="nickname">"NATGULI"</span> and is incredibly proud of the young man you're becoming.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-10 w-80 transform hover:scale-105 transition-all duration-300">
+                    <div class="text-7xl mb-6">👦</div>
+                    <p class="text-3xl font-bold mb-6">YOU</p>
+                    <p class="text-lg">The wonderful youngest in the family who brings so much joy to everyone around you.</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-yellow-500/30 to-green-500/30 backdrop-blur-sm rounded-3xl p-10 mb-10 border-2 border-yellow-500/50 shadow-2xl">
+                <p class="text-3xl mb-8">"Family is not an important thing. It's everything."</p>
+                <p class="text-xl">Your love for Mom and Dad, and their love for you, is the strongest bond in the universe. Never forget how much you are cherished!</p>
+            </div>
+            
+            <button class="btn next-slide text-xl px-12 py-5">Dream Destination! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 8: Canada Dream -->
+    <div id="slide-8" class="slide canada-bg hidden">
+        <div class="text-center max-w-5xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-10">🍁 Your Canada Dream 🍁</h1>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 mb-12">
+                <div class="w-full md:w-1/2">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-8 border border-white/20">
+                        <p class="text-2xl mb-8">Why Canada is your favorite place to visit:</p>
+                        <ul class="text-left text-xl space-y-6">
+                            <li class="flex items-start">
+                                <span class="text-3xl mr-4">🏔️</span>
+                                <span>Beautiful mountains and natural landscapes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-3xl mr-4">🏙️</span>
+                                <span>Modern cities like Toronto and Vancouver</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-3xl mr-4">🍁</span>
+                                <span>Friendly people and diverse culture</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-3xl mr-4">❄️</span>
+                                <span>Amazing winter activities</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                    <div class="bg-gradient-to-br from-blue-500/40 to-red-500/40 backdrop-blur-sm rounded-3xl p-10 h-full flex flex-col justify-center border border-white/20">
+                        <p class="text-3xl mb-8">Dream Big!</p>
+                        <p class="text-2xl mb-6">One day, you will visit Canada and experience all its wonders firsthand!</p>
+                        <p class="text-xl">Keep dreaming and working towards your goals. The world is full of amazing places waiting for you to explore!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center space-x-10 mb-10">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 w-32 h-32 flex flex-col justify-center items-center transform hover:scale-110 transition-all duration-300">
+                    <div class="text-4xl">⏰</div>
+                    <p class="mt-4 font-bold text-lg">Watches</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 w-32 h-32 flex flex-col justify-center items-center transform hover:scale-110 transition-all duration-300">
+                    <div class="text-4xl">📱</div>
+                    <p class="mt-4 font-bold text-lg">Tablet</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 w-32 h-32 flex flex-col justify-center items-center transform hover:scale-110 transition-all duration-300">
+                    <div class="text-4xl">🎨</div>
+                    <p class="mt-4 font-bold text-lg">Drawing</p>
+                </div>
+            </div>
+            
+            <button class="btn next-slide text-xl px-12 py-5">Final Wishes! →</button>
+        </div>
+    </div>
+    
+    <!-- Slide 9: Final Birthday Wishes -->
+    <div id="slide-9" class="slide dark-green-bg hidden">
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="header-text text-5xl mb-10">🎉 Happy 14th Birthday, Abdullah! 🎉</h1>
+            
+            <div class="bg-gradient-to-r from-green-500/30 to-yellow-500/30 backdrop-blur-sm rounded-3xl p-12 mb-12 border-2 border-yellow-500/50 shadow-2xl">
+                <p class="text-3xl mb-10">A very special birthday message for you:</p>
+                
+                <div class="text-left text-2xl space-y-8 mb-12">
+                    <p>Dear <span class="highlight">Abdullah</span> (our beloved <span class="nickname">Natguli</span>),</p>
+                    
+                    <p>On your 14th birthday, we want you to know how incredibly special you are. As the youngest in our family, you bring a unique light and joy to all of us.</p>
+                    
+                    <p>Your passions - from Roblox gaming to drawing, from enjoying mom's biryani to dreaming of Canada - make you the wonderful person you are.</p>
+                    
+                    <p>May this year bring you closer to all your dreams, fill your days with laughter and joy, and surround you with love and happiness.</p>
+                    
+                    <p class="text-center text-3xl font-bold mt-12 animate-pulse">Always remember how much you are loved by Mom, Dad, and your entire family!</p>
+                </div>
+                
+                <div class="text-5xl animate-bounce">🎂 🎁 🎈 🥳 🎮 🍕</div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 transform hover:scale-105 transition-all duration-300">
+                    <p class="text-2xl">May all your wishes come true!</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 transform hover:scale-105 transition-all duration-300">
+                    <p class="text-2xl">Keep being amazing!</p>
+                </div>
+            </div>
+            
+            <p class="text-2xl mb-8">With all the love in the world,</p>
+            <p class="text-4xl font-bold mb-12">Your Brother, <span class="highlight">Saqlain Abbas</span></p>
+            
+            <button id="final-animation-btn" class="btn text-xl px-12 py-5 mb-6 pulse">Special Birthday Surprise! ✨</button>
+            <br>
+            <button id="restart-btn" class="btn text-xl px-12 py-5">Experience Again! 🔄</button>
+        </div>
+    </div>
+    
+    <!-- Slide Counter -->
+    <div id="slide-counter" class="slide-counter">Slide 1 of 9</div>
+
+    <script>
+        $(document).ready(function() {
+            let currentSlide = 1;
+            const totalSlides = 9;
+            let userName = "";
+            
+            // Update slide counter
+            function updateSlideCounter() {
+                $('#slide-counter').text(`Slide ${currentSlide} of ${totalSlides}`);
+            }
+            
+            // Show specific slide
+            function showSlide(slideNumber) {
+                // Hide all slides
+                $('.slide').removeClass('active').addClass('hidden');
+                
+                // Show the requested slide
+                $(`#slide-${slideNumber}`).removeClass('hidden').addClass('active');
+                
+                // Update current slide
+                currentSlide = slideNumber;
+                
+                // Update slide counter
+                updateSlideCounter();
+                
+                // Animate entrance of slide
+                gsap.from(`#slide-${slideNumber}`, {
+                    duration: 1.2,
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.95,
+                    ease: "power3.out"
+                });
+                
+                // Add floating animations to elements in the slide
+                $(`#slide-${slideNumber} .floating`).each(function(index) {
+                    gsap.to(this, {
+                        duration: 2 + Math.random(),
+                        y: -10 + Math.random() * 20,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: index * 0.1
+                    });
+                });
+            }
+            
+            // Next slide button handler
+            $('.next-slide').on('click', function() {
+                if (currentSlide < totalSlides) {
+                    showSlide(currentSlide + 1);
+                }
+            });
+            
+            // Name authentication
+            $('#start-btn').on('click', function() {
+                const inputName = $('#name-input').val().toLowerCase().trim();
+                const validNames = ['abdullah', 'abdullah altaf', 'natguli', 'natguli abdullah'];
+                
+                if (validNames.includes(inputName)) {
+                    userName = $('#name-input').val().trim();
+                    $('#display-name').text(userName);
+                    $('#error-message').hide();
+                    
+                    // Add celebration animation
+                    gsap.to('#start-btn', {
+                        duration: 0.5,
+                        scale: 1.2,
+                        backgroundColor: '#3a9d4e',
+                        boxShadow: '0 0 40px rgba(58, 157, 78, 0.8)',
+                        onComplete: function() {
+                            showSlide(2);
+                        }
+                    });
+                } else {
+                    $('#error-message').show();
+                    gsap.from('#error-message', {
+                        duration: 0.8,
+                        y: -20,
+                        opacity: 0,
+                        scale: 0.8,
+                        ease: "back.out(1.7)"
+                    });
+                    
+                    // Shake the input
+                    gsap.to('#name-input', {
+                        duration: 0.5,
+                        x: [0, 10, -10, 10, -10, 0],
+                        ease: "power2.inOut"
+                    });
+                }
+            });
+            
+            // Allow Enter key to submit name
+            $('#name-input').on('keypress', function(e) {
+                if (e.which === 13) {
+                    $('#start-btn').click();
+                }
+            });
+            
+            // Make flame clickable
+            $('#flame').on('click', function() {
+                $('#blow-btn').click();
+            });
+            
+            // Create balloons function
+            function createBalloons() {
+                const balloonColors = [
+                    '#ff3366', '#ff6633', '#ffcc00', '#33cc33', '#3399ff', 
+                    '#9966ff', '#ff66cc', '#1e5c2e', '#ff9900', '#00ccff'
+                ];
+                
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const balloon = $('<div class="balloon"></div>');
+                        const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+                        const size = 40 + Math.random() * 40;
+                        const leftPos = Math.random() * 100;
+                        
+                        balloon.css({
+                            width: `${size}px`,
+                            height: `${size * 1.3}px`,
+                            background: `radial-gradient(circle at 30% 30%, ${color}, ${darkenColor(color, 30)})`,
+                            left: `${leftPos}%`,
+                            boxShadow: `inset -5px -5px 10px rgba(0,0,0,0.2)`
+                        });
+                        
+                        $('#fullscreen-celebration').append(balloon);
+                        
+                        // Add floating animation
+                        balloon.addClass('floating-balloon');
+                        
+                        // Animate with GSAP for more control
+                        gsap.to(balloon, {
+                            duration: 8 + Math.random() * 5,
+                            y: -window.innerHeight - 200,
+                            x: (Math.random() - 0.5) * 200,
+                            rotation: Math.random() * 360,
+                            opacity: 0,
+                            ease: "power1.in",
+                            onComplete: function() {
+                                balloon.remove();
+                            }
+                        });
+                    }, i * 300);
+                }
+            }
+            
+            // Create hearts function
+            function createHearts() {
+                const heartColors = ['#ff3366', '#ff6699', '#ff9966', '#ff66cc', '#ff3366'];
+                
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const heart = $('<div class="heart"></div>');
+                        const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                        const size = 20 + Math.random() * 40;
+                        const leftPos = Math.random() * 100;
+                        
+                        heart.css({
+                            width: `${size}px`,
+                            height: `${size}px`,
+                            left: `${leftPos}%`,
+                            bottom: '0'
+                        });
+                        
+                        // Set heart color
+                        heart.find(':before, :after').css('background-color', color);
+                        
+                        $('#fullscreen-celebration').append(heart);
+                        heart.addClass('floating-heart');
+                        
+                        // Animate with GSAP
+                        gsap.to(heart, {
+                            duration: 6 + Math.random() * 4,
+                            y: -window.innerHeight - 100,
+                            x: (Math.random() - 0.5) * 200,
+                            rotation: Math.random() * 360,
+                            opacity: 0,
+                            ease: "power1.in",
+                            onComplete: function() {
+                                heart.remove();
+                            }
+                        });
+                    }, i * 150);
+                }
+            }
+            
+            // Helper function to darken color
+            function darkenColor(color, percent) {
+                let num = parseInt(color.replace("#", ""), 16);
+                let amt = Math.round(2.55 * percent);
+                let R = (num >> 16) - amt;
+                let G = (num >> 8 & 0x00FF) - amt;
+                let B = (num & 0x0000FF) - amt;
+                
+                return "#" + (
+                    0x1000000 +
+                    (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                    (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                    (B < 255 ? B < 1 ? 0 : B : 255)
+                ).toString(16).slice(1);
+            }
+            
+            // Cake blowing interaction - ENHANCED
+            $('#blow-btn').on('click', function() {
+                // Disable the button
+                $(this).prop('disabled', true).removeClass('pulse');
+                
+                // Create a "blow" effect
+                const blowEffect = $('<div class="blow-effect"></div>');
+                blowEffect.css({
+                    position: 'absolute',
+                    width: '100px',
+                    height: '50px',
+                    background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)',
+                    borderRadius: '50%',
+                    top: '-80px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 12,
+                    filter: 'blur(5px)',
+                    opacity: 0
+                });
+                
+                $('.cake-container').append(blowEffect);
+                
+                // Animate blow effect
+                gsap.to(blowEffect, {
+                    duration: 0.5,
+                    scale: 3,
+                    opacity: 0.8,
+                    ease: "power2.out",
+                    onComplete: function() {
+                        blowEffect.remove();
+                    }
+                });
+                
+                // Animate flame going out with more effects
+                gsap.to('#flame', {
+                    duration: 1,
+                    scale: 0,
+                    opacity: 0,
+                    ease: "power2.in",
+                    onComplete: function() {
+                        $('#flame').hide();
+                        $('#candle-status').html('🎉 <strong>You did it! Your candles are blown out!</strong> 🎉');
+                        $('#wish-message').removeClass('hidden');
+                        $('#after-cake').removeClass('hidden');
+                        
+                        // Show message with animation
+                        gsap.from('#wish-message', {
+                            duration: 1.5,
+                            y: 30,
+                            opacity: 0,
+                            scale: 0.8,
+                            ease: "back.out(1.7)"
+                        });
+                        
+                        gsap.from('#after-cake', {
+                            duration: 1,
+                            scale: 0.5,
+                            opacity: 0,
+                            rotation: 360,
+                            ease: "back.out(1.7)"
+                        });
+                        
+                        // Create enhanced confetti
+                        createEnhancedConfetti();
+                        
+                        // Add sparkles to cake
+                        addCakeSparkles();
+                    }
+                });
+                
+                // Animate candle smoke with more particles
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const smoke = $('<div class="confetti"></div>');
+                        const size = 15 + Math.random() * 15;
+                        smoke.css({
+                            position: 'absolute',
+                            width: `${size}px`,
+                            height: `${size}px`,
+                            backgroundColor: `rgba(${150 + Math.random() * 100}, ${150 + Math.random() * 100}, 150, 0.8)`,
+                            borderRadius: '50%',
+                            top: '-120px',
+                            left: '50%',
+                            zIndex: 12,
+                            filter: 'blur(3px)'
+                        });
+                        
+                        $('.cake-container').append(smoke);
+                        
+                        gsap.to(smoke, {
+                            duration: 2 + Math.random(),
+                            x: (Math.random() - 0.5) * 200,
+                            y: -200 - Math.random() * 150,
+                            scale: 0.2 + Math.random(),
+                            opacity: 0,
+                            ease: "power1.out",
+                            onComplete: function() {
+                                smoke.remove();
+                            }
+                        });
+                    }, i * 80);
+                }
+                
+                // Change button text with animation
+                gsap.to(this, {
+                    duration: 0.5,
+                    scale: 1.2,
+                    backgroundColor: '#ff9900',
+                    onComplete: function() {
+                        $('#blow-btn').html('Candles Blown! 🎉');
+                        gsap.to('#blow-btn', {
+                            duration: 0.5,
+                            scale: 1
+                        });
+                    }
+                });
+                
+                // Add a subtle shake to the cake
+                gsap.to('.cake', {
+                    duration: 0.5,
+                    x: [0, 5, -5, 3, -3, 0],
+                    ease: "power2.inOut"
+                });
+            });
+            
+            // Add sparkles to cake after blowing
+            function addCakeSparkles() {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const sparkle = $('<div class="sparkle"></div>');
+                        const colors = ['#ffdd40', '#ff9900', '#ffffff', '#ffcc00'];
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        sparkle.css({
+                            position: 'absolute',
+                            width: '8px',
+                            height: '8px',
+                            backgroundColor: color,
+                            borderRadius: '50%',
+                            top: Math.random() * 140 + 'px',
+                            left: Math.random() * 280 + 'px',
+                            zIndex: 13,
+                            boxShadow: '0 0 10px ' + color
+                        });
+                        
+                        $('.cake-container').append(sparkle);
+                        
+                        gsap.to(sparkle, {
+                            duration: 1 + Math.random(),
+                            scale: 0,
+                            opacity: 0,
+                            rotation: Math.random() * 360,
+                            ease: "power2.in",
+                            onComplete: function() {
+                                sparkle.remove();
+                            }
+                        });
+                    }, i * 100);
+                }
+            }
+            
+            // Create enhanced confetti function
+            function createEnhancedConfetti() {
+                const colors = ['#ffdd40', '#ff9900', '#1e5c2e', '#3a9d4e', '#ff3333', '#00a2ff', '#ff00ff', '#00ffff'];
+                
+                for (let i = 0; i < 150; i++) {
+                    setTimeout(() => {
+                        const confetti = $('<div class="confetti"></div>');
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        const size = 5 + Math.random() * 15;
+                        const shape = Math.random() > 0.5 ? '50%' : '0';
+                        
+                        confetti.css({
+                            position: 'fixed',
+                            width: `${size}px`,
+                            height: `${size}px`,
+                            backgroundColor: color,
+                            borderRadius: shape,
+                            top: '-20px',
+                            left: Math.random() * 100 + '%',
+                            zIndex: 999
+                        });
+                        
+                        $('body').append(confetti);
+                        
+                        gsap.to(confetti, {
+                            duration: 2 + Math.random() * 2,
+                            y: window.innerHeight + 100,
+                            x: (Math.random() - 0.5) * 300,
+                            rotation: Math.random() * 1080,
+                            opacity: 0,
+                            ease: "power1.in",
+                            onComplete: function() {
+                                confetti.remove();
+                            }
+                        });
+                    }, i * 20);
+                }
+            }
+            
+            // Create fireworks for celebration
+            function createFireworks() {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        // Create firework center
+                        const firework = $('<div class="celebration-firework"></div>');
+                        const colors = ['#ffdd40', '#ff9900', '#ff3333', '#00a2ff', '#ff00ff', '#3a9d4e'];
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        const xPos = Math.random() * window.innerWidth;
+                        
+                        firework.css({
+                            backgroundColor: color,
+                            top: window.innerHeight + 50,
+                            left: xPos,
+                            boxShadow: `0 0 10px ${color}`
+                        });
+                        
+                        $('#fullscreen-celebration').append(firework);
+                        
+                        // Launch firework
+                        gsap.to(firework, {
+                            duration: 1.5,
+                            y: 100 + Math.random() * 300,
+                            ease: "power1.out",
+                            onComplete: function() {
+                                // Explode firework
+                                explodeFirework(xPos, firework.position().top, color);
+                                firework.remove();
+                            }
+                        });
+                    }, i * 300);
+                }
+            }
+            
+            // Explode firework into particles
+            function explodeFirework(x, y, color) {
+                for (let i = 0; i < 50; i++) {
+                    const particle = $('<div class="celebration-firework"></div>');
+                    const size = 2 + Math.random() * 4;
+                    
+                    particle.css({
+                        backgroundColor: color,
+                        width: `${size}px`,
+                        height: `${size}px`,
+                        top: y,
+                        left: x,
+                        boxShadow: `0 0 10px ${color}`
+                    });
+                    
+                    $('#fullscreen-celebration').append(particle);
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = 2 + Math.random() * 4;
+                    const distance = 50 + Math.random() * 150;
+                    
+                    gsap.to(particle, {
+                        duration: 1 + Math.random(),
+                        x: Math.cos(angle) * distance,
+                        y: Math.sin(angle) * distance,
+                        opacity: 0,
+                        ease: "power2.out",
+                        onComplete: function() {
+                            particle.remove();
+                        }
+                    });
+                }
+            }
+            
+            // Food image click animation
+            $('.food-image').on('click', function() {
+                const foodName = $(this).data('food');
+                
+                gsap.to(this, {
+                    duration: 0.5,
+                    scale: 0.9,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: "power2.inOut"
+                });
+                
+                // Show a temporary message
+                const message = $(`<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/80 text-white p-6 rounded-2xl z-50 text-2xl font-bold border-2 border-yellow-500 shadow-2xl">Yummy! ${foodName}! 🍴</div>`);
+                $('body').append(message);
+                
+                setTimeout(() => {
+                    gsap.to(message, {
+                        duration: 0.7,
+                        opacity: 0,
+                        y: -40,
+                        scale: 0.8,
+                        onComplete: function() {
+                            message.remove();
+                        }
+                    });
+                }, 1200);
+            });
+            
+            // Final animation button
+            $('#final-animation-btn').on('click', function() {
+                // Show full screen celebration
+                showFullScreenCelebration();
+            });
+            
+            // Show full screen celebration
+            function showFullScreenCelebration() {
+                $('#fullscreen-celebration').css('display', 'flex');
+                
+                // Animate entrance
+                gsap.from('#fullscreen-celebration', {
+                    duration: 1,
+                    opacity: 0,
+                    scale: 0.8,
+                    ease: "back.out(1.7)"
+                });
+                
+                // Animate text
+                gsap.from('.celebration-text', {
+                    duration: 1.5,
+                    y: -100,
+                    opacity: 0,
+                    scale: 0.5,
+                    ease: "back.out(1.7)"
+                });
+                
+                gsap.from('.birthday-text', {
+                    duration: 1.5,
+                    delay: 0.5,
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.3,
+                    ease: "back.out(1.7)"
+                });
+                
+                // Create fireworks
+                createFireworks();
+                
+                // Create balloons
+                createBalloons();
+                
+                // Create hearts
+                createHearts();
+                
+                // Add floating sparkles
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => {
+                        const sparkle = $('<div class="sparkle"></div>');
+                        const colors = ['#ffdd40', '#ff9900', '#ffffff', '#ff3333', '#00a2ff'];
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        
+                        sparkle.css({
+                            position: 'absolute',
+                            width: '5px',
+                            height: '5px',
+                            backgroundColor: color,
+                            borderRadius: '50%',
+                            top: Math.random() * 100 + '%',
+                            left: Math.random() * 100 + '%',
+                            boxShadow: '0 0 10px ' + color
+                        });
+                        
+                        $('#fullscreen-celebration').append(sparkle);
+                        
+                        // Make sparkle float
+                        gsap.to(sparkle, {
+                            duration: 3 + Math.random() * 5,
+                            y: '-=100',
+                            x: (Math.random() - 0.5) * 100,
+                            opacity: 0,
+                            rotation: Math.random() * 360,
+                            ease: "sine.inOut",
+                            onComplete: function() {
+                                sparkle.remove();
+                            }
+                        });
+                    }, i * 200);
+                }
+            }
+            
+            // Close celebration
+            $('#close-celebration').on('click', function() {
+                gsap.to('#fullscreen-celebration', {
+                    duration: 0.8,
+                    opacity: 0,
+                    scale: 0.9,
+                    ease: "power2.in",
+                    onComplete: function() {
+                        $('#fullscreen-celebration').css('display', 'none');
+                    }
+                });
+            });
+            
+            // Restart the experience
+            $('#restart-btn').on('click', function() {
+                // Reset cake
+                $('#flame').show().css({scale: 1, opacity: 1});
+                $('#candle-status').text('Click the flame to blow out your candles!');
+                $('#wish-message').addClass('hidden');
+                $('#after-cake').addClass('hidden');
+                $('#blow-btn').prop('disabled', false).addClass('pulse').html('Blow Out Candles! 🕯️');
+                
+                // Go back to authentication
+                showSlide(1);
+                
+                // Clear name input
+                $('#name-input').val('');
+                
+                // Focus on name input
+                setTimeout(() => {
+                    $('#name-input').focus();
+                }, 500);
+            });
+            
+            // Initialize the experience
+            updateSlideCounter();
+            
+            // Add initial animations to slide 1
+            gsap.from('#slide-1 h1', {
+                duration: 2,
+                y: -50,
+                opacity: 0,
+                rotationX: 90,
+                ease: "power3.out"
+            });
+            
+            gsap.from('#slide-1 p', {
+                duration: 1.5,
+                delay: 0.5,
+                y: 30,
+                opacity: 0,
+                stagger: 0.2,
+                ease: "power2.out"
+            });
+            
+            gsap.from('#name-input', {
+                duration: 1.2,
+                delay: 1,
+                scale: 0.8,
+                opacity: 0,
+                ease: "back.out(1.7)"
+            });
+            
+            gsap.from('#start-btn', {
+                duration: 1.2,
+                delay: 1.3,
+                y: 30,
+                opacity: 0,
+                rotationY: 180,
+                ease: "back.out(1.7)"
+            });
+            
+            // Auto-focus on name input
+            setTimeout(() => {
+                $('#name-input').focus();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
